@@ -1,14 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class ProductsService {
+  constructor(private readonly usersService: UsersService) {}
+
+
   create(createProductDto: CreateProductDto) {
     return 'This action adds a new product '+createProductDto.title;
+
+    
   }
 
-  findAll() {
+  findAll():string {
     return `This action returns all products`;
   }
 
