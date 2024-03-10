@@ -23,8 +23,7 @@ const dif=process.hrtime(startAt);
 console.log(dif);
 const responseTime=dif[0]*1e3+dif[1]*1e-6;
 this.logger.log(`${method} ${baseUrl} ${statusCode} ${contentLength} -  ${responseTime.toFixed(2,)}ms ${userAgent} ${ip}`);
-const v8 = require('node:v8'); 
-console.log(v8.cachedDataVersionTag());
+
 
 
 
