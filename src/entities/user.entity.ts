@@ -17,4 +17,6 @@ id:number;
     @Column({select:false,nullable:false})
     password:string;
 
+    @Column({nullable:true})
+    age:number;
 }
