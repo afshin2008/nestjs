@@ -15,7 +15,7 @@ id:number;
     @Column({length:25,nullable:true})
     last_name:string;
     @Column({select:false,nullable:false})
-    password:string;
+    passWord:string;
 
     @Column({nullable:true})
     age:number;

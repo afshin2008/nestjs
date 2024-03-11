@@ -13,10 +13,6 @@ export class UsersController {
         return await this.usersService.findAll();
     }
 
-    @Post()
-    async createUser(){
-        return await this.usersService.createUser();
-        
-    }
+    
 
 }
