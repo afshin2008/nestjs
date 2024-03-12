@@ -8,14 +8,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { HozorModule } from './hozor/hozor.module';
 import Users from './entities/user.entity';
-
+import { ConfigModule } from '@nestjs/config';
 @Module({
-  imports: [TypeOrmModule.forRoot({
+  imports: [ConfigModule.forRoot(),TypeOrmModule.forRoot({
     type:'postgres',
     host:'localhost',
     port:5432,
     username:'postgres',
-    password:'123456',
+    password:'ghasem@@HH',
     database:'test',
     entities:[__dirname+'/**/*.entity{.ts,.js}'],
     synchronize:true
