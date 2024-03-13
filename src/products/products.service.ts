@@ -9,7 +9,7 @@ export class ProductsService {
 
 
   create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product '+createProductDto.title;
+    return createProductDto;
 
     
   }

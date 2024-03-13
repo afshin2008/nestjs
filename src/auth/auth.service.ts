@@ -23,12 +23,13 @@ constructor(
 
   async register(registerDto: registerDto) {
 
-    const user=await this.userService.findUserByEmail(registerDto.email)
+    const user=await this.userService.findUserByEmail(registerDto.email);
+      
 
     if(user){
       throw new HttpException('User already exists',400);
-
-
+   
+    
     }
 
      registerDto.passWord=await bcrypt.hash(registerDto.passWord,10);

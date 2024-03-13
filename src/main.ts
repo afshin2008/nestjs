@@ -4,12 +4,18 @@ import * as passport from 'passport';
 import * as session from 'express-session'
 import {ConfigService} from '@nestjs/config';
 
+import {ValidationPipe } from '@nestjs/common'
+
 async function bootstrap() {
 
   
 
   const app = await NestFactory.create(AppModule);
 
+
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist:false,
+  }));
 app.use(session({
   secret:'secret',
 }));
