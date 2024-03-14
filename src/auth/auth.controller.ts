@@ -18,6 +18,11 @@ export class AuthController {
 @Post("login")
 login(@Body() data:loginDto){
 
+
+  console.log(data);
+  
+  
+
 return this.authService.login(data);
 }
  
