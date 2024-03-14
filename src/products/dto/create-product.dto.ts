@@ -1,14 +1,19 @@
 import { IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator";
+import { userGuard } from "src/users/dto/userGuard.dto";
 
 export class CreateProductDto {
 @IsString()
 @IsNotEmpty()
-    readonly title:string;
+     title:string;
     @IsString()
     @IsNotEmpty()
     @MinLength(10)
-    readonly description:string;
+     description:string;
     @IsOptional()
-    readonly price:string;
+     price:string;
     
+
+    @IsOptional()
+    user:userGuard;
+
 }
