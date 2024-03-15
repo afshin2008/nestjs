@@ -10,9 +10,7 @@ export class CreateProductDto {
     @MinLength(10)
      description:string;
     @IsOptional()
-     price:string;
-    
-
+     price:number;
     @IsOptional()
     user:userGuard;
 

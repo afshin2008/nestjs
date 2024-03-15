@@ -6,9 +6,9 @@ import { ProductsModule } from './products/products.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { HozorModule } from './hozor/hozor.module';
 import Users from './entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
+
 @Module({
   imports: [ConfigModule.forRoot(),TypeOrmModule.forRoot({
     type:'postgres',
@@ -22,7 +22,7 @@ import { ConfigModule } from '@nestjs/config';
 
   }),
   TypeOrmModule.forFeature([Users]),
-  UsersModule, ProductsModule, AuthModule, HozorModule],
+  UsersModule, ProductsModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
