@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthController } from './auth.controller';
+import { OtpService } from './otp.service';
+import { OtpController } from './otp.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import Users from 'src/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
@@ -15,7 +15,7 @@ signOptions:{expiresIn:'1d'}
   }),
     TypeOrmModule.forFeature([Users,Codes])
   ],
-  controllers: [AuthController],
-  providers: [AuthService,UsersService,JwtStrategy],
+  controllers: [OtpController],
+  providers: [OtpService,UsersService,JwtStrategy],
 })
-export class AuthModule {}
+export class OtpModule {}

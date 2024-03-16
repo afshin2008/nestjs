@@ -36,12 +36,21 @@ export class ProductsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto,@Request() request) {
+
+    const user:userGuard=request.user;
+    console.log(user);
+    updateProductDto.user=user;
+
+
+
     return this.productsService.update(+id, updateProductDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productsService.remove(+id);
+  remove(@Param('id') id: string,@Request() request) {
+    const user=request.user;
+
+    return this.productsService.remove(+id,user);
   }
 }
