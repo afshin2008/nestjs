@@ -1,4 +1,5 @@
 {
     "github.copilot.chat.localeOverride": "en",
-    "CodeGPT.apiKey": "OpenAI"
+    "CodeGPT.apiKey": "OpenAI",
+    "tabnine.experimentalAutoImports": false
 }
