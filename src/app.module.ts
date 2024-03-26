@@ -9,9 +9,56 @@ import { AuthModule } from './auth/auth.module';
 import {OtpModule} from './otp/otp.module'
 import Users from './entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
+import { AcceptLanguageResolver, HeaderResolver, I18n, I18nModule, QueryResolver } from 'nestjs-i18n';
+import * as path from 'path';
+import {MailerModule} from '@nestjs-modules/mailer'
+import * as dotenv from 'dotenv';
+import '@nestjs/swagger';
+dotenv.config();
+import {EjsAdapter} from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
+@Module({ 
+  imports: [
+    MailerModule.forRoot({
+      transport: {
+        host:process.env.EMAIL_SERVER_HOST,
+        port:parseInt(process.env.EMAIL_SERVER_PORT) ,
+        secure: true,
+        auth: { 
+ 
+          user: process.env.EMAIL_USERNAME,
+            
+          pass: process.env.EMAIL_PASSWORD
+  
+        }   
+      }, 
+      defaults:{
+        from:"افشین <fhafshin@gmail.com>",
+      },
+      template:{
+        dir:process.cwd()+'/templates',
+        adapter:new EjsAdapter(),
+        options:{
+          strict:false
+        }
 
-@Module({
-  imports: [ConfigModule.forRoot(),TypeOrmModule.forRoot({
+
+      }
+    }),
+  I18nModule.forRoot(
+{
+  fallbackLanguage: 'en',
+  loaderOptions:{
+    path:path.join(__dirname,'i18n'),
+    watch:true
+  },
+  resolvers:[
+    new HeaderResolver(["x-custom-lang"]),
+    new QueryResolver(["lang"]),
+    new AcceptLanguageResolver()
+  ]
+}
+  ),
+    ConfigModule.forRoot(),TypeOrmModule.forRoot({
     type:'postgres',
     host:'localhost',
     port:5432,
