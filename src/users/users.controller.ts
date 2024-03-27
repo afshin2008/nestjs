@@ -1,5 +1,7 @@
-import { Controller,Get, Post } from '@nestjs/common';
+import { Body, Controller,Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import {UsersService} from './users.service';
+import { FileInterceptor } from '@nestjs/platform-express';
+import {  multerOption } from 'src/helpers/multer.config';
 
 
 
@@ -12,7 +14,15 @@ export class UsersController {
        
         return await this.usersService.findAll();
     }
+   
 
+    @Post()
+    @UseInterceptors(FileInterceptor('avatar',multerOption))
+    async uploadAvatar(@UploadedFile() file:any){
+     
+console.log(file);
+return{};
+    }
     
 
 }

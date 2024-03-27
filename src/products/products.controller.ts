@@ -5,10 +5,12 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import {userGuard} from 'src/users/dto/userGuard.dto';
 import { JwtAuthGuard } from 'src/jwt-auth/jwt-auth.guard';
 import { I18n, I18nContext } from 'nestjs-i18n';
-
-
+import { ApiBearerAuth, ApiHeader, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+@ApiBearerAuth()
+ @ApiTags("Products")
 //@UseGuards(JwtAuthGuard)
 @Controller('products')
+ 
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
@@ -25,6 +27,17 @@ export class ProductsController {
     
     return this.productsService.create(createProductDto);
   }
+@ApiResponse({
+  status:201,description:"llkll",type:CreateProductDto
+})
+@ApiHeader({
+  name:"Lang",
+  description:"bjbkkbk"
+})
+@ApiParam({
+name:"id",
+description:"llk"
+})
 
   @Get()
   findAll() {
