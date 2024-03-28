@@ -16,8 +16,11 @@ import * as dotenv from 'dotenv';
 import '@nestjs/swagger';
 dotenv.config();
 import {EjsAdapter} from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
+import {ServeStaticModule} from '@nestjs/serve-static';
 @Module({ 
-  imports: [
+  imports: [ServeStaticModule.forRoot({
+rootPath:path.join(__dirname,'../','static')
+  }),
     MailerModule.forRoot({
       transport: {
         host:process.env.EMAIL_SERVER_HOST,
